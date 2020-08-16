@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>The Web</title>
+	<link href="styles.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery.js"></script>
+</head>
+
+<body>
+	<form id="frm">
+		<div>
+			<div>
+				<label>Full Name</label>
+				<input id="fName" type="text" value="">
+			</div>
+			<div>
+				<label>Position</label>
+				<input id="pos" type="text" value="">
+			</div>
+			<div>
+				<label>Manager's Name</label>
+				<input id="mName" type="text" value="">
+			</div>
+			<div>
+				<label>Company Name</label>
+				<input id="cName" type="text" value="">
+			</div>
+			<div>
+				<label>Phone</label>
+				<input id="phone" type="text" value="">
+			</div>
+			<div>
+				<label>Salary</label>
+				<input id="salary" type="text" value="">
+			</div>
+			<div>
+				<label>&nbsp;</label>
+				<label><input id="employed" type="checkbox" value="1"> Currently Employed</label>
+			</div>
+			<button id="submit" type="submit">Process Info</button>
+		</div>
+	</form>
+
+	<div class="leftBlock">
+		<div class="card">
+			<span class="name">Sample First Name</span>
+			<span class="title">Sample Title</span>
+			<span class="company">Sample Company</span>
+			<span class="phone">(aaa) bbb-cccc</span>
+		</div>
+	</div>
+	<div class="rightBlock">
+		<table class="salary">
+			<caption>
+				Salary Adjustment
+			</caption>
+			<thead>
+				<tr>
+					<th>Base</th>
+					<th>West Coast</th>
+					<th>Mid-West</th>
+					<th>East Coast</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td id="base">$XX,XXX.XX</td>
+					<td id="west">$XX,XXX.XX</td>
+					<td id="midW">$XX,XXX.XX</td>
+					<td id="east">$XX,XXX.XX</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+</body>
+
+</html>
+
+<script type="text/javascript">
+	$("#submit").on("click", function (event) {
+		event.preventDefault();
+
+		var info = {
+			FullName: $("#fName").val(),
+			position: $("#pos").val(),
+			ManagerName: $("#mName").val(),
+			CompanyName: $("#cName").val(),
+			phone: $("#phone").val(),
+			salary: $("#salary").val(),
+			employed: $("#employed").val
+		}
+		console.log(info);
+		/*----------------Getting Salary Info----------------*/
+		var sal = parseFloat(info.salary);
+
+		var we = sal * 0.6;
+		var mW = sal * 1.2;
+		var ea = sal * 0.8;
+
+		// console.log(we, mW, ea);
+
+		var base = $("#base").text(sal + "K");
+		var west = $("#west").text(we + "K");
+		var mid = $("#midW").text(mW + "K");
+		var east = $("#east").text(ea + "K");
+
+		// console.log(base, west, mid, east);
+		/*----------------Getting Business Card Info----------------*/
+
+		//Sample First Name
+		var fullName = info.FullName.split(' ');
+		var firstName = fullName[0];
+		var lastName = fullName[fullName.length - 1];
+		console.log(lastName);
+		var nameBC = $(".name").text(firstName);
+		console.log("firstName = " + firstName)
+
+		//Sample Title
+		var pos = info.position;
+		var title = $(".title").text(pos);
+
+		//Sample Company
+		var comp = info.CompanyName;
+		var company = $(".company").text(comp);
+
+		//Sample Phone
+		var phn = info.phone;
+		console.log("Phone is = " + phn);
+		var phone = $(".phone").text(phn);
+
+		$("#fName").val("");
+		$("#pos").val("");
+		$("#mName").val("");
+		$("#cName").val("");
+		$("#phone").val("");
+		$("#salary").val("");
+		$("#employed").val("");
+	})
+</script>
