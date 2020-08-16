@@ -92,6 +92,16 @@
 			employed: $("#employed").val
 		}
 		console.log(info);
+
+		$.post("/api/person", info, function(data) {
+
+			if (data) {
+				console.log("Business card and Salary entered");
+			}
+			else {
+				alert("Could not be uploaded");
+			}
+		});
 		/*----------------Getting Salary Info----------------*/
 		var sal = parseFloat(info.salary);
 
