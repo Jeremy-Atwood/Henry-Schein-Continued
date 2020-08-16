@@ -12,6 +12,7 @@ module.exports = function (app) {
             var sal = infoData[i].info.salary;
 
             var salOBJ = {
+                id: infoData[i],
                 base: parseFloat(sal),
                 we: base * 0.6,
                 mW: base * 1.2,
