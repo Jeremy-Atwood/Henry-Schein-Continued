@@ -1,53 +1,18 @@
-﻿
-# Henry Schein One
-## Explanation
+﻿# Practices used for data modeling and viewing
+-I grabbed the input from the user directly on the HTML file and, to protect data at this time, I used an API request to send that data to server side Javascript file to run the calculations on the salary.
+-Once that salary information was calculated I then sent that data to the View/Data/info.js file to save that object into a new array to have the entered persons data replace the information in the business card and the salary adjustment card.
+-With that array in the View/Data/info.js file I am going to set it up to be read by the NPM sequilize to add the object into an SQL database to be called back to in the future to be either deleted or updated as desired. Also, a new card is going to be added that retrieves that data from the API call/ database with an added on ID to be able to be updated and deleted to have a full CRUD methodology available.
 
-Create a web form that gathers the following information from the user:
+# API design principals
+-Have the data entered into the website by the visitor entered in as an object and send the data to a different file that is not viewable on the front-end viewing and in a browsers console
+-Have the data sent through the API be retrieved and displayed in another HTML document either in a new card or in a safe hyperlink that does not send that information to a different website and keeps everything contained in one application/ web page
 
-- Full Name
-- Position/Title
-- Manager's Name
-- Company Name
-- Phone Number
-- Salary
-- Current Employment Status
+# Security Considerations
+-One main security consideration that I would want to apply to this is having all of the visitors information stored on a database and not within the files themselves as an array. Even though that information would be cleared when the cache is cleared for the browser, or when the server is restarted I would not want it to be storred in the files anywhere if it can be avoided.
+-When the database is set up and initialized I would want to run all of the visitors entered information through an encription middleware when it is either received or sent to the server, and decrypted when it is requested from the server or when the response is received from the server.
+-One encryption that I was inittially thinking of using is the BCrypt Node Package, and looking through other Node encryption packages to find out what would be the best one to use for this project and to protect visitors information as best as possible.
 
-Provide a "Process Info" button that, when clicked, completes the following:
-
-1. Re-display the data in a business card style block
-2. Display a table of adjusted salary values for different regions:
-	- Base: original salary
-	- West Coast: salary * 0.6
-	- Mid West: salary * 1.2
-	- East Coast: salary * 0.8
-
-If the form data is changed allow the "Process Info" button to be clicked again to update the page.
-
-Provide simple validation on the salary field. The field should be a positive number above 10000.
-It should also accept the [$,.] characters so a value like $15,512.13 is considered valid.
-
-## Requirements
-
-The salary calculation should be performed on the server side. The web page should send an asynchronous request to the server and then display the results as described in the Explanation section.
-
-The preferred technology stack includes node.js and vue.js but any working implementation is acceptable. You are free to use any other packages or libraries.
-
-You should also include a document that describes the best practices you applied for data modeling and view modeling. Also describe what principals you applied to your web API design.
-Additionally, describe the security considerations that you would address if this application were hosted publicly on the Internet.
-
-## Notes
-
-The included HTML and CSS are provided as basic templates. Replace or modify them as needed.
-
-You should spend no more than 4 ~ 8 hours on this exercise.
-
-Your solution should demonstrate the following skills:
-- Client/Server communication
-- Modern API design
-- Modern server application design
-- Dynamic DOM manipulation
-- Understanding of HTML, CSS, JavaScript
-- Understanding of Models, Views, Components
-- Input validation and security
-
-
+## Future updates
+-Fully add all the API routes and create the database to store visitor information
+-Fully remove any Javascript/ Jquery code from the HTML file that contains or manipulates any visitor information that is received from the form and have all of that stored on the server side of things.
+-Convert the HTML files to Vue.js to make sure that I am able to convert them correctly and successfully use Vue.js
